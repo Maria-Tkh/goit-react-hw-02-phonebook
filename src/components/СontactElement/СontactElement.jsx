@@ -1,14 +1,22 @@
-// import { ContactForm } from "components/СontactForm/СontactForm";
+import PropTypes from 'prop-types';
+import { Item, Button } from './ContactElement.styled';
 
-export const ContactElement = ({ onClick, name, number, id }) => {
+export const ContactElement = ({ id, name, number, onClick }) => {
   return (
-    <li key={id}>
+    <Item key={id}>
       <span>
         {name}: {number}
       </span>
-      <button type="button" onClick={onClick}>
+      <Button type="button" onClick={onClick}>
         Delete
-      </button>
-    </li>
+      </Button>
+    </Item>
   );
+};
+
+ContactElement.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };

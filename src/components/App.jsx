@@ -1,9 +1,9 @@
 import { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import { ContactForm } from './СontactForm/СontactForm';
 import { ContactList } from './СontactList/СontactList';
 import { Filter } from './Filter/Filter';
-import { v4 as uuidv4 } from 'uuid';
-// uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
+import { PhonebookTitle, ContactTitle } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -14,8 +14,6 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    // name: '',
-    // number: ''
   };
 
   formSubmitHandler = ({ name, number }) => {
@@ -25,7 +23,7 @@ export class App extends Component {
       name,
       number,
     };
-    // console.log(contact.id);
+
     contacts.some(contact => contact.name === newContact.name)
       ? alert(`${newContact.name} is already in contacts`)
       : this.setState(({ contacts }) => ({
@@ -58,9 +56,9 @@ export class App extends Component {
 
     return (
       <div>
-        <h1>Phonebook</h1>
+        <PhonebookTitle>Phonebook</PhonebookTitle>
         <ContactForm onSubmit={this.formSubmitHandler} />
-        <h2>Contacts</h2>
+        <ContactTitle>Contacts</ContactTitle>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList contacts={visibleContacts} onDeleteContact={this.deleteContact} />
       </div>
